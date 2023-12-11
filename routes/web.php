@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return 'Home controller';
-});
+Route::get('/', [HomeController::class, 'show']);
 
-Route::get('/movie', function () {
-    return 'Liste de films';
-});
+Route::get('/movie', [MovieController::class, 'showMoviesList']);
 
-Route::get('/movie/{id}', function (string $id) {
-    return 'film '.$id;
-});
+Route::get('/movie/{id}', [MovieController::class, 'showCurrentMovie']);
