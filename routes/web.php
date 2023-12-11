@@ -15,7 +15,7 @@ use App\Http\Controllers\MovieController;
 |
 */
 
-Route::get('/', [HomeController::class, 'show']);
+Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/movie', [MovieController::class, 'showMoviesList']);
 

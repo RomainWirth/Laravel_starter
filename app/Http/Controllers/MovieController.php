@@ -7,11 +7,13 @@ use Illuminate\View\View;
 
 class MovieController extends Controller
 {
-    public function showMoviesList(): string {
-        return 'Liste de films';
+    public function showMoviesList(): view {
+        return view('movies-list');
     }
 
-    public function showCurrentMovie(string $id): string {
-        return 'Fiche du film '.$id;
+    public function showCurrentMovie(string $id): view {
+        return view('movie-details', [
+            'id' => $id
+        ]);
     }
 }
