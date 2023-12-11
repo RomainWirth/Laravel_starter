@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'Home controller';
+});
+
+Route::get('/movie', function () {
+    return 'Liste de films';
+});
+
+Route::get('/movie/{id}', function (string $id) {
+    return 'film '.$id;
 });
