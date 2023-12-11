@@ -37,6 +37,7 @@
                         Hello World from Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </h1>
                 </div>
+                {{ $slot }}
             </div>
         </div>
     </body>
