@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #2d3b4f;
+}
+.logo {
+    width: 200px;
+}
+.navigation {
+    width: 1024px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+nav ul {
+    display: flex;
+}
+nav ul li {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: #0c214e;
+    color: #fff;
+    box-shadow: 0 0 10px #0d1116;
+}
