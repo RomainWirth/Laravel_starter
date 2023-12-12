@@ -6,14 +6,48 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use League\Csv\Exception;
+use League\Csv\Reader;
+use League\Csv\UnavailableStream;
 
 class MoviesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
+     *
      */
     public function run(): void
+    {
+        $csv = Reader::createFromPath('/home/user/Cours/PHP_Laravel/my-first-app/database/netflix_movies_and_tv_shows_sample_dataset_sample.csv');
+        $csv->setHeaderOffset(0);
+
+        $records = $csv->getRecords();
+
+        foreach ($records as $record) {
+            DB::table('movies')->insert([
+                'url' => $record['url'],
+                'name' => $record['name'],
+                'contenttype' => $record['contentType'],
+                'description' => $record['description'],
+                'contentrating' => $record['contentRating'],
+                'genre' => $record['genre'],
+                'poster' => $record['poster'],
+                'formattedduration' => $record['formattedDuration'],
+                'releaseddate' => $record['releasedDate'],
+                'actors' => $record['actors'],
+                'director' => $record['director'],
+                'creator' => $record['creator'],
+                'audio' => $record['audio'],
+                'subtitle' => $record['subtitle'],
+                'numberofseasons' => $record['numberOfSeasons'],
+                'seasonstartdate' => $record['seasonStartDate']
+
+            ]);
+        };
+    }
+
+    /*public function run(): void
     {
         DB::table('movies')->insert([
             'name' => 'Lord of the Rings - The Fellowship of the Ring',
@@ -62,5 +96,5 @@ class MoviesTableSeeder extends Seeder
             'director' => 'Peter Jackson',
             'date' => '11-12-2013'
         ]);
-    }
+    }*/
 }

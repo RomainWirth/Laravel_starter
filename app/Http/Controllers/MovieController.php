@@ -10,9 +10,9 @@ use App\Models\Movie;
 class MovieController extends Controller
 {
     public function showMoviesList(): view {
-        $movies = Movie::all();
-        echo $movies;
-        return view('movies-list');
+        $dataJson = Movie::all();
+        $movies = json_decode($dataJson);
+        return view('movies-list', ['movies' => $movies]);
     }
 
     public function showCurrentMovie(string $id): view {
