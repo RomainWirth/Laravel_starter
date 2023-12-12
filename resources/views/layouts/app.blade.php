@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Styles -->
     <style>
@@ -18,26 +18,10 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="navigation">
-            <div class="logo">
-                <a href="{{ url('/') }}">
-                    <img src="{{ asset('images/movie-logo-film.png') }}" alt="logo">
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li onclick="check_active('homepage')">
-                        <a id="homepage" href="{{ url('/') }}">Home</a>
-                    </li>
-                    <li onclick="check_active('movies-list')">
-                        <a id="movies" href="{{ url('/movie') }}">Movies</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    @yield('content')
-    <footer></footer>
+    @include('includes.header')
+    <main>
+        @yield('content')
+    </main>
+    @include('includes.footer')
 </body>
 </html>
