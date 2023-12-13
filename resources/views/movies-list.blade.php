@@ -5,7 +5,7 @@
     <!-- No surplus words or unnecessary actions. - Marcus Aurelius -->
     <h1>Liste des films</h1>
     {{--@json($movies);--}}
-    <div class="moviesList">
+    <div class="moviesList overflow-auto">
         @foreach($movies as $movie)
             <a href="{{ route('currentMovie', $movie->id) }}" class="movie">
                 <div>
