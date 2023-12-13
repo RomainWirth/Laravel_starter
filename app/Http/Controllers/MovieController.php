@@ -23,8 +23,52 @@ class MovieController extends Controller
         return view('movie-details', ['movie' => $movie]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     */
+    public function create() {
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     */
     public function store(Request $request): RedirectResponse {
         $movie = $request->input('');
         return redirect('/movie');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     */
+    public function show(Movie $movie) {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     */
+    public function edit(Movie $movie) {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     */
+    public function update(Request $request, Movie $movie) {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     */
+    public function destroy(Movie $movie) {
+        //
     }
 }

@@ -20,3 +20,5 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/movie', [MovieController::class, 'showMoviesList'])->name('moviesList');
 
 Route::get('/movie/{id}', [MovieController::class, 'showCurrentMovie'])->name('currentMovie');
+
+Route::get('/new-movie', [MovieController::class, 'create'])->name('newMovie');

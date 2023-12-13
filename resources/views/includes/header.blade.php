@@ -13,6 +13,9 @@
                 <li onclick="check_active('movies-list')">
                     <a id="movies" href="{{ route('moviesList') }}">Movies</a>
                 </li>
+                <li>
+                    <a id="newMovie" href="{{ route('newMovie') }}">Add Movie</a>
+                </li>
             </ul>
         </nav>
     </div>
