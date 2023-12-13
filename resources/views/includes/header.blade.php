@@ -8,10 +8,10 @@
         <nav>
             <ul>
                 <li onclick="check_active('homepage')">
-                    <a id="homepage" href="{{ url('/') }}">Home</a>
+                    <a id="homepage" href="{{ route('home') }}">Home</a>
                 </li>
                 <li onclick="check_active('movies-list')">
-                    <a id="movies" href="{{ url('/movie') }}">Movies</a>
+                    <a id="movies" href="{{ route('moviesList') }}">Movies</a>
                 </li>
             </ul>
         </nav>

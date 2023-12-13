@@ -16,8 +16,8 @@ class MovieController extends Controller
     }
 
     public function showCurrentMovie(string $id): view {
-        return view('movie-details', [
-            'id' => $id
-        ]);
+        $movie = Movie::find($id);
+        /*dd($movie);*/
+        return view('movie-details', ['movie' => $movie]);
     }
 }

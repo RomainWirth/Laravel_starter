@@ -15,8 +15,8 @@ use App\Http\Controllers\MovieController;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/movie', [MovieController::class, 'showMoviesList']);
+Route::get('/movie', [MovieController::class, 'showMoviesList'])->name('moviesList');
 
-Route::get('/movie/{id}', [MovieController::class, 'showCurrentMovie']);
+Route::get('/movie/{id}', [MovieController::class, 'showCurrentMovie'])->name('currentMovie');
