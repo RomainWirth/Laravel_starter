@@ -3,7 +3,6 @@
 @section('content')
 <div class="blockpage">
     <h1 class="title">Liste des films</h1>
-    {{--@json($movies);--}}
     <div class="moviesList overflow-auto">
         @foreach($movies as $movie)
             <a href="{{ route('currentMovie', $movie->id) }}" class="movie">
