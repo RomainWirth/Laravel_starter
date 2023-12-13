@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="blockpage">
-    <!-- No surplus words or unnecessary actions. - Marcus Aurelius -->
-    <h1>Liste des films</h1>
+    <h1 class="title">Liste des films</h1>
     {{--@json($movies);--}}
     <div class="moviesList overflow-auto">
         @foreach($movies as $movie)

@@ -70,3 +70,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ```
 php artisan serve
 ```
+& another terminal for tailwind
+```
+npm run dev
+```

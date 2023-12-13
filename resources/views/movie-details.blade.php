@@ -7,7 +7,7 @@
         <div class="image">
             <img src="{{ $movie->poster }}" alt="poster du film {{ $movie->name }}">
         </div>
-        <div class="content">
+        <div class="movieContent">
             <p><span class="bold">Synopsis :</span> {{ $movie->description }}</p>
             <p><span class="bold">Actors :</span> {{ $movie->actors }}</p>
             @if( $movie->director )
