@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="blockpage">
-    <h1 class="title"><span class="bold">Fiche du film :</span> {{ $movie->name }}</h1>
+    <h1 class="title"><span class="bold">Movie details for :</span> {{ $movie->name }}</h1>
     <div class="movieDetails">
         <div class="image">
             <img src="{{ $movie->poster }}" alt="poster du film {{ $movie->name }}">
