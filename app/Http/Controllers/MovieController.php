@@ -66,6 +66,10 @@ class MovieController extends Controller
 
     public function update(Request $request, Movie $movie) { }
 
-    public function destroy(Movie $movie) { }
+    public function destroy(string $id) {
+        $movie = Movie::find($id);
+        $movie->delete();
+        return redirect(route('moviesList'))->with('success', 'Movie deleted');
+    }
 
 }

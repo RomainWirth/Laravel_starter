@@ -28,10 +28,13 @@
             <p><span class="bold">Genre :</span> {{ $movie->genre }}</p>
         </div>
     </div>
-    {{--<form method="POST" action="{{ route('movies.destroy', $post) }}">
+    <div>
+
+        <form method="POST" action="{{ route('deleteMovie', $movie->id) }}">
         @csrf
         @method("DELETE")
-        <input type="submit" value="x Supprimer">
-    </form>--}}
+            <input type="submit" value="x Supprimer" class="mainButton">
+        </form>
+    </div>
 </div>
 @endsection

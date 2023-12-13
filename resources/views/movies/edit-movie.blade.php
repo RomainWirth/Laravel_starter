@@ -3,6 +3,7 @@
 @section('content')
 <div class="blockpage">
     <h1 class="title">New entry</h1>
+    {{--if isset(movie)--}}
     <form method="POST" action="{{ route('saveMovie') }}" class="formulaire overflow-scroll">
         @csrf
         <p>
