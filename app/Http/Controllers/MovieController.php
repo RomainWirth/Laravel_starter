@@ -36,11 +36,10 @@ class MovieController extends Controller
             'genre' => 'required',
             'poster' => 'required|string|max:255',
             'releaseddate' => 'required',
-
         ]);
 
         $movie = Movie::create([
-            'url' => '',
+            'url' => $request->url,
             'name' => $request->name,
             'contenttype' => $request->contenttype,
             'description' => $request->description,
@@ -53,12 +52,12 @@ class MovieController extends Controller
             'director' => $request->director,
             'creator' => $request->creator,
             'audio' => $request->audio,
-            'subtitle' => '',
-            'numberofseasons' => '',
-            'seasonstartdate' => ''
+            'subtitle' => $request->subtitle,
+            'numberofseasons' => $request->numberofseasons,
+            'seasonstartdate' => $request->seasonstartdate,
         ]);
 
-        return redirect(route('movies.movie-details', $movie->id ));
+        return redirect(route('currentMovie', $movie->id ));
     }
 
     public function show(Movie $movie) { }
