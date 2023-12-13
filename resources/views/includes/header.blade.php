@@ -7,14 +7,14 @@
         </div>
         <nav>
             <ul>
-                <li onclick="check_active('homepage')">
+                <li onclick="check_active('homepage')" class="mainButton">
                     <a id="homepage" href="{{ route('home') }}">Home</a>
                 </li>
-                <li onclick="check_active('movies-list')">
+                <li onclick="check_active('movies-list')" class="mainButton">
                     <a id="movies" href="{{ route('moviesList') }}">Movies</a>
                 </li>
-                <li>
-                    <a id="newMovie" href="{{ route('newMovie') }}">Add Movie</a>
+                <li class="mainButton">
+                    <a id="newMovie" href="{{ route('newMovie') }}" title="Add a movie">Add Movie</a>
                 </li>
             </ul>
         </nav>

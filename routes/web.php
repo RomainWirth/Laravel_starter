@@ -17,8 +17,10 @@ use App\Http\Controllers\MovieController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/movie', [MovieController::class, 'showMoviesList'])->name('moviesList');
+Route::get('/movies', [MovieController::class, 'showMoviesList'])->name('moviesList');
 
-Route::get('/movie/{id}', [MovieController::class, 'showCurrentMovie'])->name('currentMovie');
+Route::get('/movies/{id}', [MovieController::class, 'showCurrentMovie'])->name('currentMovie');
 
 Route::get('/new-movie', [MovieController::class, 'create'])->name('newMovie');
+
+Route::post('/movies', [MovieController::class, 'store'])->name('saveMovie');

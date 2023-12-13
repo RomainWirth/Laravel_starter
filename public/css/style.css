@@ -21,13 +21,21 @@ header {
 nav ul {
     display: flex;
 }
-nav ul li {
+.mainButton {
     margin: 5px;
     padding: 5px;
     border: 1px solid #fff;
     border-radius: 5px;
     background-color: #0c214e;
+    box-shadow: 0 0 10px #0d1116;
     color: #fff;
+}
+.submitButton {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #0c214e;
     box-shadow: 0 0 10px #0d1116;
 }
 
@@ -99,6 +107,24 @@ main:before {
 .movieContent {
     margin: 5px;
     padding: 5px;
+}
+.formulaire {
+    background-color: #fff;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 80%;
+}
+.formulaire p {
+    width: 100%;
+}
+.inputText {
+    width: 100%;
 }
 footer {
     height: 5vh;

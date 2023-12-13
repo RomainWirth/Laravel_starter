@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="blockpage">
-    <h1><span class="bold">Fiche du film :</span> {{ $movie->name }}</h1>
+    <h1 class="title"><span class="bold">Fiche du film :</span> {{ $movie->name }}</h1>
     <div class="movieDetails">
         <div class="image">
             <img src="{{ $movie->poster }}" alt="poster du film {{ $movie->name }}">
@@ -28,5 +28,10 @@
             <p><span class="bold">Genre :</span> {{ $movie->genre }}</p>
         </div>
     </div>
+    {{--<form method="POST" action="{{ route('movies.destroy', $post) }}">
+        @csrf
+        @method("DELETE")
+        <input type="submit" value="x Supprimer">
+    </form>--}}
 </div>
 @endsection

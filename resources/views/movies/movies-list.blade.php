@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="blockpage">
-    <h1 class="title">Liste des films</h1>
+    <h1 class="title">All movies</h1>
     <div class="moviesList overflow-auto">
         @foreach($movies as $movie)
             <a href="{{ route('currentMovie', $movie->id) }}" class="movie">
@@ -25,6 +25,11 @@
                     <p><span class="bold">Genre :</span> {{ $movie->genre }}</p>
                 </div>
             </a>
+            {{--<form method="POST" action="{{ route('movies.destroy', $post) }}">
+                @csrf
+                @method("DELETE")
+                <input type="submit" value="x Supprimer">
+            </form>--}}
         @endforeach
     </div>
 </div>

@@ -14,61 +14,59 @@ class MovieController extends Controller
     public function showMoviesList(): view {
         $dataJson = Movie::all();
         $movies = json_decode($dataJson);
-        return view('movies-list', ['movies' => $movies]);
+        return view('movies.movies-list', ['movies' => $movies]);
     }
 
     public function showCurrentMovie(string $id): view {
         $movie = Movie::find($id);
         /*dd($movie);*/
-        return view('movie-details', ['movie' => $movie]);
+        return view('movies.movie-details', ['movie' => $movie]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     */
     public function create() {
-
+        return view("movies.edit-movie");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     */
-    public function store(Request $request): RedirectResponse {
-        $movie = $request->input('');
-        return redirect('/movie');
+    public function store(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'contenttype' => 'required',
+            'description' => 'required',
+            'contentrating' => 'required',
+            'genre' => 'required',
+            'poster' => 'required|string|max:255',
+            'releaseddate' => 'required',
+
+        ]);
+
+        $movie = Movie::create([
+            'url' => '',
+            'name' => $request->name,
+            'contenttype' => $request->contenttype,
+            'description' => $request->description,
+            'contentrating' => $request->contentrating,
+            'genre' => $request->genre,
+            'poster' => $request->poster,
+            'formattedduration' => $request->formattedduration,
+            'releaseddate' => $request->releaseddate,
+            'actors' => $request->actors,
+            'director' => $request->director,
+            'creator' => $request->creator,
+            'audio' => $request->audio,
+            'subtitle' => '',
+            'numberofseasons' => '',
+            'seasonstartdate' => ''
+        ]);
+
+        return redirect(route('movies.movie-details', $movie->id ));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     */
-    public function show(Movie $movie) {
-        //
-    }
+    public function show(Movie $movie) { }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     */
-    public function edit(Movie $movie) {
-        //
-    }
+    public function edit(Movie $movie) { }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     */
-    public function update(Request $request, Movie $movie) {
-        //
-    }
+    public function update(Request $request, Movie $movie) { }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     */
-    public function destroy(Movie $movie) {
-        //
-    }
+    public function destroy(Movie $movie) { }
+
 }
