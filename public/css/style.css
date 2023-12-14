@@ -78,7 +78,7 @@ main:before {
     background-color: #000;
     opacity: 0.5;
 }
-.blockpage {
+.blockPage {
     height: 80vh;
     width: 1024px;
     position: relative;

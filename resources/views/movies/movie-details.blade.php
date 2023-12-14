@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="blockpage">
+<div class="blockPage">
     <h1 class="title"><span class="bold">Movie details for :</span> {{ $movie->name }}</h1>
     <div class="movieDetails">
         <div class="image">
@@ -30,7 +30,7 @@
     </div>
     <div class="heading">
         <a id="updateMovie" href="{{ route('updateMovie', $movie->id) }}" title="Update movie">
-            <p class="mainButton">Update informations</p>
+            <p class="mainButton">Update details</p>
         </a>
         <form method="POST" action="{{ route('deleteMovie', $movie->id) }}">
             @csrf

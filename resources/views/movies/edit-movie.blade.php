@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="blockpage">
+<div class="blockPage">
 
     @if (isset($movie))
     <div class="heading">

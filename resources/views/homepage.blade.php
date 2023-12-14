@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="blockpage">
+<div class="blockPage">
     <div class="mainPage">
         <h1 id="mainTitle">Welcome</h1>
         <a href="{{ route('moviesList') }}">

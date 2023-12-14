@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="blockpage">
+<div class="blockPage">
     <h1 class="title">All movies</h1>
     <div class="moviesList overflow-auto">
         @foreach($movies as $movie)
