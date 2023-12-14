@@ -28,11 +28,13 @@
             <p><span class="bold">Genre :</span> {{ $movie->genre }}</p>
         </div>
     </div>
-    <div>
-
+    <div class="heading">
+        <a id="updateMovie" href="{{ route('updateMovie', $movie->id) }}" title="Update movie">
+            <p class="mainButton">Update informations</p>
+        </a>
         <form method="POST" action="{{ route('deleteMovie', $movie->id) }}">
-        @csrf
-        @method("DELETE")
+            @csrf
+            @method("DELETE")
             <input type="submit" value="x Supprimer" class="mainButton">
         </form>
     </div>

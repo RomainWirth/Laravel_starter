@@ -8,7 +8,7 @@
             <a href="{{ route('currentMovie', $movie->id) }}" class="movie">
                 <div>
                     <h2 class="bold">{{ $movie->name }}</h2>
-                    <img src="{{ $movie->poster }}" alt="">
+                    <img src="{{ $movie->poster }}" alt="poster du film {{ $movie->name }}">
                     <p><span class="bold">Synopsis :</span> {{ $movie->description }}</p>
                     @if( $movie->actors)
                         <p><span class="bold">Actors :</span> {{ $movie->actors }}</p>

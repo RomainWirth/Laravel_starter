@@ -28,7 +28,7 @@ class MovieController extends Controller
     }
 
     public function store(Request $request) {
-        $this->validate($request, [
+        $rules = [
             'name' => 'required|string|max:255',
             'contenttype' => 'required',
             'description' => 'required',
@@ -36,7 +36,9 @@ class MovieController extends Controller
             'genre' => 'required',
             'poster' => 'required|string|max:255',
             'releaseddate' => 'required',
-        ]);
+        ];
+
+        $this->validate($request, $rules);
 
         $movie = Movie::create([
             'url' => $request->url,
@@ -60,11 +62,45 @@ class MovieController extends Controller
         return redirect(route('currentMovie', $movie->id ));
     }
 
-    public function show(Movie $movie) { }
+    public function show(Movie $movie) {
+        return view('movies.movie-details', ['movie' => $movie]);
+    }
 
-    public function edit(Movie $movie) { }
+    public function edit(String $id): view {
+        $movie = Movie::find($id);
+        return view('movies.edit-movie', ['movie' => $movie]);
+    }
 
-    public function update(Request $request, Movie $movie) { }
+    public function update(Request $request, Movie $movie) {
+        $rules = [
+            'name' => 'required|string|max:255',
+            'contenttype' => 'required',
+            'description' => 'required',
+            'contentrating' => 'required',
+            'genre' => 'required',
+            'poster' => 'required|string|max:255',
+            'releaseddate' => 'required',
+        ];
+        $this->validate($request, $rules);
+        $movie->update([
+            'url' => $request->url,
+            'name' => $request->name,
+            'contenttype' => $request->contenttype,
+            'description' => $request->description,
+            'contentrating' => $request->contentrating,
+            'genre' => $request->genre,
+            'poster' => $request->poster,
+            'formattedduration' => $request->formattedduration,
+            'releaseddate' => $request->releaseddate,
+            'actors' => $request->actors,
+            'director' => $request->director,
+            'creator' => $request->creator,
+            'audio' => $request->audio,
+            'subtitle' => $request->subtitle,
+            'numberofseasons' => $request->numberofseasons,
+            'seasonstartdate' => $request->seasonstartdate,
+        ]);
+    }
 
     public function destroy(string $id) {
         $movie = Movie::find($id);

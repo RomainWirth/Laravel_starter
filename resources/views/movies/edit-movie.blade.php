@@ -2,13 +2,30 @@
 
 @section('content')
 <div class="blockpage">
-    <h1 class="title">New entry</h1>
-    {{--if isset(movie)--}}
+
+    @if (isset($movie))
+    <div class="heading">
+        <h1 class="title">Update movie</h1>
+        <a id="currentMovie" href="{{ route('currentMovie', $movie->id) }}" title="current movie">
+            <p class="mainButton">Back</p>
+        </a>
+    </div>
+    <form method="PUT" action="{{ route('updateMovie', $movie->id) }}" enctype="multipart/form-data" class="formulaire overflow-scroll">
+        <!-- <input type="hidden" name="_method" value="PUT"> -->
+        @method('PUT')
+    @else
+    <div class="heading">
+        <h1 class="title">New entry</h1>
+        <a id="mainList" href="{{ route('moviesList') }}" title="main list">
+            <p class="mainButton">Back</p>
+        </a>
+    </div>
     <form method="POST" action="{{ route('saveMovie') }}" class="formulaire overflow-scroll">
+    @endif
         @csrf
         <p>
             <label for="name">Title</label><br/>
-            <input type="text" name="name" value="" id="name" placeholder="Title of the movie" class="inputText">
+            <input type="text" name="name" value="{{ isset($movie->name) ? $movie->name : old('name') }}" id="name" placeholder="Title of the movie" class="inputText">
 
             @error("title")
             <span>{{ $message }}</span>
@@ -16,7 +33,12 @@
         </p>
         <p>
             <label for="poster" >Poster</label><br/>
-            <input type="url" name="poster" id="poster" class="inputText">
+            @if (isset($movie))
+                <div class="image">
+                    <img src="{{ $movie->poster }}" alt="alt="poster du film {{ $movie->name }}">
+                </div>
+            @endif
+            <input type="url" name="poster" value="{{ isset($movie->poster) ? $movie->poster : old('poster') }}" id="poster" class="inputText">
 
             <!-- Le message d'erreur pour "picture" -->
             @error("poster")
@@ -26,7 +48,7 @@
         <p>
             <label for="contenttype">Content Type</label><br/>
             <select name="contenttype" id="contenttype">
-                <option value="">--select option--</option>
+                <option value="{{ isset($movie->contenttype) ? $movie->contenttype : old('content type') }}">--select option--</option>
                 <option value="TVSeries">TVSeries</option>
                 <option value="Movie">Movie</option>
             </select>
@@ -38,7 +60,7 @@
         </p>
         <p>
             <label for="description">Synopsis</label><br/>
-            <input type="text" name="description" id="description" lang="en" placeholder="Synopsis of the movie" class="inputText">
+            <input type="text" name="description" value="{{ isset($movie->description) ? $movie->description : old('Synopsis') }}" id="description" lang="en" placeholder="Synopsis of the movie" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("description")
@@ -48,7 +70,7 @@
         <p>
             <label for="contentrating">Content Rating</label><br/>
             <select name="contentrating" id="contentrating">
-                <option value="">--select option--</option>
+                <option value="{{ isset($movie->contentrating) ? $movie->contentrating : old('content rating') }}">--select option--</option>
                 <option value="7+">7+</option>
                 <option value="13+">13+</option>
                 <option value="16+">16+</option>
@@ -63,7 +85,7 @@
         <p>
             <label for="genre">Genre</label><br/>
             <select name="genre" id="genre">
-                <option value="">--select option--</option>
+                <option value="{{ isset($movie->genre) ? $movie->genre : old('genre') }}">--select option--</option>
                 <option value="Competition Reality TV">Competition Reality TV</option>
                 <option value="Documentaries">Documentaries</option>
                 <option value="Dramas">Dramas</option>
@@ -105,7 +127,7 @@
         </p>
         <p>
             <label for="formatedduration">Duration</label><br/>
-            <input type="text" name="formatedduration" value="" id="formatedduration" placeholder="Duration" class="inputText">
+            <input type="text" name="formatedduration" value="{{ isset($movie->formatedduration) ? $movie->formatedduration : old('duration') }}" id="formatedduration" placeholder="Duration" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("formatedduration")
@@ -114,7 +136,7 @@
         </p>
         <p>
             <label for="releaseddate">Released Date</label><br/>
-            <input type="text" name="releaseddate" value="" id="releaseddate" placeholder="Released Date" class="inputText">
+            <input type="text" name="releaseddate" value="{{ isset($movie->releaseddate) ? $movie->releaseddate : old('released date') }}" id="releaseddate" placeholder="Released Date" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("releaseddate")
@@ -123,7 +145,7 @@
         </p>
         <p>
             <label for="actors">Actors</label><br/>
-            <input type="text" name="actors" value="" id="actors" placeholder="Actors" class="inputText">
+            <input type="text" name="actors" value="{{ isset($movie->actors) ? $movie->actors : old('actors') }}" id="actors" placeholder="Actors" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("actors")
@@ -132,7 +154,7 @@
         </p>
         <p>
             <label for="director">Director</label><br/>
-            <input type="text" name="director" value="" id="director" placeholder="Director" class="inputText">
+            <input type="text" name="director" value="{{ isset($movie->director) ? $movie->director : old('director') }}" id="director" placeholder="Director" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("director")
@@ -141,7 +163,7 @@
         </p>
         <p>
             <label for="creator">Creator</label><br/>
-            <input type="text" name="creator" value="" id="creator" placeholder="Creator" class="inputText">
+            <input type="text" name="creator" value="{{ isset($movie->creator) ? $movie->creator : old('creator') }}" id="creator" placeholder="Creator" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("creator")
@@ -150,7 +172,7 @@
         </p>
         <p>
             <label for="audio">Audio</label><br/>
-            <input type="text" name="audio" value="" id="audio" placeholder="Audio" class="inputText">
+            <input type="text" name="audio" value="{{ isset($movie->audio) ? $movie->audio : old('audio') }}" id="audio" placeholder="Audio" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("audio")
@@ -159,7 +181,7 @@
         </p>
         <p>
             <label for="subtitles">Subtitles</label><br/>
-            <input type="text" name="subtitles" value="" id="subtitles" placeholder="Subtitles" class="inputText">
+            <input type="text" name="subtitles" value="{{ isset($movie->subtitles) ? $movie->subtitles : old('subtitles') }}" id="subtitles" placeholder="Subtitles" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("subtitles")
@@ -168,7 +190,7 @@
         </p>
         <p>
             <label for="numberofseasons">Number of Seasons</label><br/>
-            <input type="text" name="numberofseasons" value="" id="numberofseasons" placeholder="Number of Seasons" class="inputText">
+            <input type="text" name="numberofseasons" value="{{ isset($movie->numberofseasons) ? $movie->numberofseasons : old('number of seasons') }}" id="numberofseasons" placeholder="Number of Seasons" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("numberofseasons")
@@ -177,7 +199,7 @@
         </p>
         <p>
             <label for="seasonstartdate">Season Start Date</label><br/>
-            <input type="text" name="seasonstartdate" value="" id="seasonstartdate" placeholder="Season Start Date" class="inputText">
+            <input type="text" name="seasonstartdate" value="{{ isset($movie->seasonstartdate) ? $movie->seasonstartdate : old('season start date') }}" id="seasonstartdate" placeholder="Season Start Date" class="inputText">
 
             <!-- Le message d'erreur pour "content" -->
             @error("seasonstartdate")
