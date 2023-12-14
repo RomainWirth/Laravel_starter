@@ -70,25 +70,24 @@ class MovieController extends Controller
     }
 
     public function store(Request $request): RedirectResponse {
+
         $rules = [
             'name' => 'required|string|max:255',
             'contenttype' => 'required',
             'description' => 'required',
             'contentrating' => 'required',
-            'genre_id' => 'required|exists:genres,id',
+            'genre' => 'required|exists:genres,id',
             'poster' => 'required|string|max:255',
             'releaseddate' => 'required',
         ];
-
-        $this->validate($request, $rules);
-
+        $request->validate($rules);
         $movie = Movie::create([
             'url' => $request->url,
             'name' => $request->name,
             'contenttype' => $request->contenttype,
             'description' => $request->description,
             'contentrating' => $request->contentrating,
-            'genre_id' => $request->genre_id,
+            'genre_id' => (int)$request->genre_id,
             'poster' => $request->poster,
             'formattedduration' => $request->formattedduration,
             'releaseddate' => $request->releaseddate,
@@ -114,7 +113,7 @@ class MovieController extends Controller
         return view('movies.edit-movie', ['movie' => $movie, 'genres' => $genres]);
     }
 
-    public function update(Request $request, Movie $movie) {
+    public function update(Request $request, string $id) {
         $rules = [
             'name' => 'required|string|max:255',
             'contenttype' => 'required',
@@ -124,8 +123,10 @@ class MovieController extends Controller
             'poster' => 'required|string|max:255',
             'releaseddate' => 'required',
         ];
-        $this->validate($request, $rules);
-        $movie->update([
+        $request->validate($rules);
+        $movie = Movie::find($id);
+        $movie->update($request->all()
+        /*[
             'url' => $request->url,
             'name' => $request->name,
             'contenttype' => $request->contenttype,
@@ -142,7 +143,9 @@ class MovieController extends Controller
             'subtitle' => $request->subtitle,
             'numberofseasons' => $request->numberofseasons,
             'seasonstartdate' => $request->seasonstartdate,
-        ]);
+        ]*/
+        );
+        return redirect(route('currentMovie', $movie->id))->with('success', 'Movie updated');
     }
 
     public function destroy(string $id) {

@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="heading">
-        <a id="updateMovie" href="{{ route('updateMovie', $movie->id) }}" title="Update movie">
+        <a id="editMovie" href="{{ route('editMovie', $movie->id) }}" title="Edit movie">
             <p class="mainButton">Update details</p>
         </a>
         <form method="POST" action="{{ route('deleteMovie', $movie->id) }}">

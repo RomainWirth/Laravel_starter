@@ -10,7 +10,7 @@
             <p class="mainButton">Back</p>
         </a>
     </div>
-    <form method="PUT" action="{{ route('updateMovie', $movie->id) }}" enctype="multipart/form-data" class="formulaire overflow-scroll">
+    <form method="POST" action="{{ route('updateMovie', $movie->id) }}" enctype="multipart/form-data" class="formulaire overflow-scroll">
         <!-- <input type="hidden" name="_method" value="PUT"> -->
         @method('PUT')
     @else
