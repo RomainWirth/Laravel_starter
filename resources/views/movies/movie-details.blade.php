@@ -5,7 +5,7 @@
     <div class="heading">
         <h1 class="title"><span class="bold">Movie details for :</span> {{ $movie->name }}</h1>
         {{--{{ dump($movie->name) }}--}}
-        <a id="currentMovie" href="{{ route('currentMovie', $movie->id) }}" title="current movie">
+        <a id="currentMovie" href="{{ route('moviesList') }}" title="current movie">
             <p class="mainButton">Back</p>
         </a>
     </div>

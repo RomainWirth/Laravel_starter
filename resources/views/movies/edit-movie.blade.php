@@ -85,8 +85,11 @@
         <p>
             <label for="genre">Genre</label><br/>
             <select name="genre" id="genre">
-                <option value="{{ isset($movie->genre) ? $movie->genre : old('genre') }}">--select option--</option>
-                <option value="Competition Reality TV">Competition Reality TV</option>
+                <option value="{{ isset($movie->genre_id) ? $movie->genre : old('genre') }}">--select option--</option>
+                @foreach($genres as $key => $value)
+                    <option value="{{ $key }}" {{ isset($movie) && $movie->genre_id == $key ? 'selected' : '' }}>{{ $value }}</option>
+                @endforeach
+                {{--<option value="Competition Reality TV">Competition Reality TV</option>
                 <option value="Documentaries">Documentaries</option>
                 <option value="Dramas">Dramas</option>
                 <option value="Family Features">Family Features</option>
@@ -117,7 +120,7 @@
                 <option value="TV Thrillers">TV Thrillers</option>
                 <option value="US Movies">US Movies</option>
                 <option value="Wedding & Romance Reality TV">Wedding & Romance Reality TV</option>
-                <option value="Westerns">Westerns</option>
+                <option value="Westerns">Westerns</option>--}}
             </select>
 
             <!-- Le message d'erreur pour "content" -->

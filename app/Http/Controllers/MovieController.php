@@ -65,7 +65,8 @@ class MovieController extends Controller
     }
 
     public function create(): View {
-        return view("movies.edit-movie");
+        $genres = Genre::pluck('name', 'id'); // Récupère tous les genres de la base de données
+        return view("movies.edit-movie", compact('genres'));
     }
 
     public function store(Request $request): RedirectResponse {
@@ -74,7 +75,7 @@ class MovieController extends Controller
             'contenttype' => 'required',
             'description' => 'required',
             'contentrating' => 'required',
-            'genre' => 'required',
+            'genre_id' => 'required|exists:genres,id',
             'poster' => 'required|string|max:255',
             'releaseddate' => 'required',
         ];
@@ -87,7 +88,7 @@ class MovieController extends Controller
             'contenttype' => $request->contenttype,
             'description' => $request->description,
             'contentrating' => $request->contentrating,
-            'genre' => $request->genre,
+            'genre_id' => $request->genre_id,
             'poster' => $request->poster,
             'formattedduration' => $request->formattedduration,
             'releaseddate' => $request->releaseddate,
@@ -109,7 +110,8 @@ class MovieController extends Controller
 
     public function edit(String $id): view {
         $movie = Movie::find($id);
-        return view('movies.edit-movie', ['movie' => $movie]);
+        $genres = Genre::pluck('name', 'id');
+        return view('movies.edit-movie', ['movie' => $movie, 'genres' => $genres]);
     }
 
     public function update(Request $request, Movie $movie) {
@@ -118,7 +120,7 @@ class MovieController extends Controller
             'contenttype' => 'required',
             'description' => 'required',
             'contentrating' => 'required',
-            'genre' => 'required',
+            'genre_id' => 'required|exists:genres,id',
             'poster' => 'required|string|max:255',
             'releaseddate' => 'required',
         ];
@@ -129,7 +131,7 @@ class MovieController extends Controller
             'contenttype' => $request->contenttype,
             'description' => $request->description,
             'contentrating' => $request->contentrating,
-            'genre' => $request->genre,
+            'genre_id' => $request->genre_id,
             'poster' => $request->poster,
             'formattedduration' => $request->formattedduration,
             'releaseddate' => $request->releaseddate,
