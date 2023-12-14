@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -54,9 +55,13 @@ class MovieController extends Controller
     }
 
     public function showCurrentMovie(string $id): View {
-        $movie = Movie::findOrFail($id);
-        /*dd($movie);*/
-        return view('movies.movie-details', ['movie' => $movie]);
+        try {
+            $movie = Movie::with('genre')->findOrFail($id);
+            return view('movies.movie-details', ['movie' => $movie]);
+        } catch (ModelNotFoundException $exception) {
+            abort(404);
+        }
+
     }
 
     public function create(): View {
