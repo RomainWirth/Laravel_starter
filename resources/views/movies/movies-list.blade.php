@@ -22,7 +22,7 @@
                     <p><span class="bold">Released on :</span> {{ $movie->releaseddate }}</p>
                     <p><span class="bold">Rating :</span> {{ $movie->contentrating }}</p>
                     <p><span class="bold">Type :</span> {{ $movie->contenttype }}</p>
-                    <p><span class="bold">Genre :</span> {{ $movie->genre }}</p>
+                    <p><span class="bold">Genre :</span> {{ $movie->genre->name }}</p>
                 </div>
             </a>
             {{--<form method="POST" action="{{ route('movies.destroy', $post) }}">

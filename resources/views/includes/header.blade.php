@@ -7,10 +7,10 @@
         </div>
         <nav>
             <ul>
-                <li onclick="check_active('homepage')" class="mainButton">
+                <li {{--onclick="check_active('homepage')"--}} class="mainButton">
                     <a id="homepage" href="{{ route('home') }}">Home</a>
                 </li>
-                <li onclick="check_active('movies-list')" class="mainButton">
+                <li {{--onclick="check_active('movies-list')"--}} class="mainButton">
                     <a id="movies" href="{{ route('moviesList') }}">Movies</a>
                 </li>
                 <li class="mainButton">

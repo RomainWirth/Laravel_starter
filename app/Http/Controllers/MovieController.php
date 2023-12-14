@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -12,8 +13,48 @@ use App\Models\Movie;
 class MovieController extends Controller
 {
     public function showMoviesList(): view {
-        $dataJson = Movie::all();
+/*        Genre::create(['name' => 'Competition Reality TV']);
+        Genre::create(['name' => 'Documentaries']);
+        Genre::create(['name' => 'Dramas']);
+        Genre::create(['name' => 'Family Features']);
+        Genre::create(['name' => 'Family Watch Together TV']);
+        Genre::create(['name' => 'Fantasy TV Shows']);
+        Genre::create(['name' => 'Horror TV Serials']);
+        Genre::create(['name' => 'Movies Based on Books']);
+        Genre::create(['name' => 'Movies Based on Real Life']);
+        Genre::create(['name' => 'Music & Musicals']);
+        Genre::create(['name' => 'Period Pieces']);
+        Genre::create(['name' => 'Political Documentaries']);
+        Genre::create(['name' => 'Romantic Movies']);
+        Genre::create(['name' => 'Romantic TV Comedies']);
+        Genre::create(['name' => 'Sci-Fi & Fantasy Anime']);
+        Genre::create(['name' => 'Sci-Fi Movies']);
+        Genre::create(['name' => 'Sitcoms']);
+        Genre::create(['name' => 'Social Issue Dramas']);
+        Genre::create(['name' => 'Stand-Up Comedy']);
+        Genre::create(['name' => 'Teen Movies']);
+        Genre::create(['name' => 'True Crime Documentaries']);
+        Genre::create(['name' => 'TV Action & Adventure']);
+        Genre::create(['name' => 'TV Cartoons']);
+        Genre::create(['name' => 'TV Comedies']);
+        Genre::create(['name' => 'TV Dramas']);
+        Genre::create(['name' => 'TV Mysteries']);
+        Genre::create(['name' => 'TV Shows Based on Books']);
+        Genre::create(['name' => 'TV Shows Based on Manga']);
+        Genre::create(['name' => 'TV Thrillers']);
+        Genre::create(['name' => 'US Movies']);
+        Genre::create(['name' => 'Wedding & Romance Reality TV']);
+        Genre::create(['name' => 'Westerns']);*/
+
+        /*$dataJson = Movie::all();*/
+
+        /*$dataJson = Movie::select('movies.*', 'genres.name as genre_name')
+            ->leftJoin('genres', 'movies.genre_id', '=', 'genres.id')
+            ->get();*/
+
+        $dataJson = Movie::with('genre')->get();
         $movies = json_decode($dataJson);
+        /*dd($movies);*/
         return view('movies.movies-list', ['movies' => $movies]);
     }
 
