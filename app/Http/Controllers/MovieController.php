@@ -12,7 +12,7 @@ use App\Models\Movie;
 
 class MovieController extends Controller
 {
-    public function showMoviesList(): view {
+    public function showMoviesList(): View {
 /*        Genre::create(['name' => 'Competition Reality TV']);
         Genre::create(['name' => 'Documentaries']);
         Genre::create(['name' => 'Dramas']);
@@ -47,28 +47,23 @@ class MovieController extends Controller
         Genre::create(['name' => 'Westerns']);*/
 
         /*$dataJson = Movie::all();*/
-
-        /*$dataJson = Movie::select('movies.*', 'genres.name as genre_name')
-            ->leftJoin('genres', 'movies.genre_id', '=', 'genres.id')
-            ->get();*/
-
         $dataJson = Movie::with('genre')->get();
         $movies = json_decode($dataJson);
         /*dd($movies);*/
         return view('movies.movies-list', ['movies' => $movies]);
     }
 
-    public function showCurrentMovie(string $id): view {
-        $movie = Movie::find($id);
+    public function showCurrentMovie(string $id): View {
+        $movie = Movie::findOrFail($id);
         /*dd($movie);*/
         return view('movies.movie-details', ['movie' => $movie]);
     }
 
-    public function create() {
+    public function create(): View {
         return view("movies.edit-movie");
     }
 
-    public function store(Request $request) {
+    public function store(Request $request): RedirectResponse {
         $rules = [
             'name' => 'required|string|max:255',
             'contenttype' => 'required',

@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="blockPage">
-    <h1 class="title"><span class="bold">Movie details for :</span> {{ $movie->name }}</h1>
+    <div class="heading">
+        <h1 class="title"><span class="bold">Movie details for :</span> {{ $movie->name }}</h1>
+        {{--{{ dump($movie->name) }}--}}
+        <a id="currentMovie" href="{{ route('currentMovie', $movie->id) }}" title="current movie">
+            <p class="mainButton">Back</p>
+        </a>
+    </div>
     <div class="movieDetails">
         <div class="image">
             <img src="{{ $movie->poster }}" alt="poster du film {{ $movie->name }}">
@@ -25,7 +31,7 @@
                 <p><span class="bold">Number of Seasons :</span> {{ $movie->numberofseasons }}</p>
                 <p><span class="bold">Season starting date :</span> {{ $movie->seasonstartdate }}</p>
             @endif
-            <p><span class="bold">Genre :</span> {{ $movie->genre }}</p>
+            <p><span class="bold">Genre :</span> {{ $movie->genre->name }}</p>
         </div>
     </div>
     <div class="heading">
