@@ -22,13 +22,13 @@ Route::get('/movies', [MovieController::class, 'showMoviesList'])->name('moviesL
 
 Route::get('/movies/{id}', [MovieController::class, 'showCurrentMovie'])->name('currentMovie');
 
-Route::get('/new-movie', [MovieController::class, 'create'])->name('newMovie');
-Route::post('/movies', [MovieController::class, 'store'])->name('saveMovie');
+Route::get('/new-movie', [MovieController::class, 'create'])->middleware(['auth', 'verified'])->name('newMovie');
+Route::post('/movies', [MovieController::class, 'store'])->middleware(['auth', 'verified'])->name('saveMovie');
 
-Route::get('/movies/{id}/edit',[MovieController::class, 'edit'])->name('editMovie');
-Route::put('/movies/{id}', [MovieController::class, 'update'])->name('updateMovie');
+Route::get('/movies/{id}/edit',[MovieController::class, 'edit'])->middleware(['auth', 'verified'])->name('editMovie');
+Route::put('/movies/{id}', [MovieController::class, 'update'])->middleware(['auth', 'verified'])->name('updateMovie');
 
-Route::delete('/movies/{id}', [MovieController::class, 'destroy'])->name('deleteMovie');
+Route::delete('/movies/{id}', [MovieController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteMovie');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

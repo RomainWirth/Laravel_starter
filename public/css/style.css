@@ -158,6 +158,19 @@ main:before {
     flex-direction: column;
     justify-content: space-between;
 }
+.contentTop {
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.contentBottom {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 footer {
     height: 5vh;
     background-color: #0d1116;
