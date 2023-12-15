@@ -37,6 +37,7 @@
             <p><span class="bold">Genre :</span> {{ $movie->genre->name }}</p>
         </div>
     </div>
+    @auth
     <div class="heading">
         <a id="editMovie" href="{{ route('editMovie', $movie->id) }}" title="Edit movie">
             <p class="mainButton">Update details</p>
@@ -47,5 +48,6 @@
             <input type="submit" value="x Supprimer" class="mainButton">
         </form>
     </div>
+    @endauth
 </div>
 @endsection

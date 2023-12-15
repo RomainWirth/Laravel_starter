@@ -150,6 +150,14 @@ main:before {
 .inputText {
     width: 100%;
 }
+.profileContent {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 footer {
     height: 5vh;
     background-color: #0d1116;
