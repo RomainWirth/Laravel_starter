@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('poster');
             $table->string('formattedduration');
             $table->string('releaseddate');
-            $table->string('actors');
+            $table->string('actors_unused');
             $table->string('director');
             $table->string('creator');
             $table->string('audio');

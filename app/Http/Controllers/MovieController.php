@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Actor;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class MovieController extends Controller
 {
     public function showMoviesList(): View {
         /*$dataJson = Movie::all();*/
-        $dataJson = Movie::with('genre')->get();
+        $dataJson = Movie::with('genre', 'actors')->get();
         $movies = json_decode($dataJson);
         /*dd($movies);*/
         return view('movies.movies-list', ['movies' => $movies]);
@@ -47,16 +48,16 @@ class MovieController extends Controller
         ];
         $request->validate($rules);
         $movie = Movie::create([
-            'url' => $request->url,
-            'name' => $request->name,
+            'url' => $request->input('url'),
+            'name' => $request->input('name'),
             'contenttype' => $request->contenttype,
-            'description' => $request->description,
+            'description' => $request->input('description'),
             'contentrating' => $request->contentrating,
             'genre_id' => (int)$request->genre,
             'poster' => $request->poster,
             'formattedduration' => $request->formattedduration,
             'releaseddate' => $request->releaseddate,
-            'actors' => $request->actors,
+            'actors_unused' => $request->actors,
             'director' => $request->director,
             'creator' => $request->creator,
             'audio' => $request->audio,

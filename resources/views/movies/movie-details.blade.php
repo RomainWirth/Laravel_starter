@@ -15,8 +15,11 @@
         </div>
         <div class="movieContent">
             <p><span class="bold">Synopsis :</span> {{ $movie->description }}</p>
-            @if( $movie->actors)
-                <p><span class="bold">Actors :</span> {{ $movie->actors }}</p>
+            @if( $movie->actors )
+                <p class="bold">Actors :</p>
+                @foreach($movie->actors as $actors)
+                    <span>{{ $actors->name }},</span>
+                @endforeach
             @endif
             @if( $movie->director )
                 <p><span class="bold">Director :</span> {{ $movie->director }}</p>

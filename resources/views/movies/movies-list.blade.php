@@ -11,7 +11,12 @@
                     <img src="{{ $movie->poster }}" alt="poster du film {{ $movie->name }}">
                     <p><span class="bold">Synopsis :</span> {{ $movie->description }}</p>
                     @if( $movie->actors)
-                        <p><span class="bold">Actors :</span> {{ $movie->actors }}</p>
+                        <p class="bold">
+                            Actors :
+                        </p>
+                        @foreach($movie->actors as $actor)
+                            <span>{{ $actor->name }}</span>
+                        @endforeach
                     @endif
                     @if( $movie->director )
                         <p><span class="bold">Director :</span> {{ $movie->director }}</p>
