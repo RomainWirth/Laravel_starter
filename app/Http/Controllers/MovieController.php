@@ -14,39 +14,6 @@ use App\Models\Movie;
 class MovieController extends Controller
 {
     public function showMoviesList(): View {
-/*        Genre::create(['name' => 'Competition Reality TV']);
-        Genre::create(['name' => 'Documentaries']);
-        Genre::create(['name' => 'Dramas']);
-        Genre::create(['name' => 'Family Features']);
-        Genre::create(['name' => 'Family Watch Together TV']);
-        Genre::create(['name' => 'Fantasy TV Shows']);
-        Genre::create(['name' => 'Horror TV Serials']);
-        Genre::create(['name' => 'Movies Based on Books']);
-        Genre::create(['name' => 'Movies Based on Real Life']);
-        Genre::create(['name' => 'Music & Musicals']);
-        Genre::create(['name' => 'Period Pieces']);
-        Genre::create(['name' => 'Political Documentaries']);
-        Genre::create(['name' => 'Romantic Movies']);
-        Genre::create(['name' => 'Romantic TV Comedies']);
-        Genre::create(['name' => 'Sci-Fi & Fantasy Anime']);
-        Genre::create(['name' => 'Sci-Fi Movies']);
-        Genre::create(['name' => 'Sitcoms']);
-        Genre::create(['name' => 'Social Issue Dramas']);
-        Genre::create(['name' => 'Stand-Up Comedy']);
-        Genre::create(['name' => 'Teen Movies']);
-        Genre::create(['name' => 'True Crime Documentaries']);
-        Genre::create(['name' => 'TV Action & Adventure']);
-        Genre::create(['name' => 'TV Cartoons']);
-        Genre::create(['name' => 'TV Comedies']);
-        Genre::create(['name' => 'TV Dramas']);
-        Genre::create(['name' => 'TV Mysteries']);
-        Genre::create(['name' => 'TV Shows Based on Books']);
-        Genre::create(['name' => 'TV Shows Based on Manga']);
-        Genre::create(['name' => 'TV Thrillers']);
-        Genre::create(['name' => 'US Movies']);
-        Genre::create(['name' => 'Wedding & Romance Reality TV']);
-        Genre::create(['name' => 'Westerns']);*/
-
         /*$dataJson = Movie::all();*/
         $dataJson = Movie::with('genre')->get();
         $movies = json_decode($dataJson);
@@ -61,7 +28,6 @@ class MovieController extends Controller
         } catch (ModelNotFoundException $exception) {
             abort(404);
         }
-
     }
 
     public function create(): View {
@@ -70,7 +36,6 @@ class MovieController extends Controller
     }
 
     public function store(Request $request): RedirectResponse {
-
         $rules = [
             'name' => 'required|string|max:255',
             'contenttype' => 'required',
@@ -87,7 +52,7 @@ class MovieController extends Controller
             'contenttype' => $request->contenttype,
             'description' => $request->description,
             'contentrating' => $request->contentrating,
-            'genre_id' => (int)$request->genre_id,
+            'genre_id' => (int)$request->genre,
             'poster' => $request->poster,
             'formattedduration' => $request->formattedduration,
             'releaseddate' => $request->releaseddate,
@@ -119,20 +84,19 @@ class MovieController extends Controller
             'contenttype' => 'required',
             'description' => 'required',
             'contentrating' => 'required',
-            'genre_id' => 'required|exists:genres,id',
+            'genre' => 'required|exists:genres,id',
             'poster' => 'required|string|max:255',
             'releaseddate' => 'required',
         ];
         $request->validate($rules);
         $movie = Movie::find($id);
-        $movie->update($request->all()
-        /*[
+        $movie->update([
             'url' => $request->url,
             'name' => $request->name,
             'contenttype' => $request->contenttype,
             'description' => $request->description,
             'contentrating' => $request->contentrating,
-            'genre_id' => $request->genre_id,
+            'genre_id' => $request->genre,
             'poster' => $request->poster,
             'formattedduration' => $request->formattedduration,
             'releaseddate' => $request->releaseddate,
@@ -143,8 +107,7 @@ class MovieController extends Controller
             'subtitle' => $request->subtitle,
             'numberofseasons' => $request->numberofseasons,
             'seasonstartdate' => $request->seasonstartdate,
-        ]*/
-        );
+        ]);
         return redirect(route('currentMovie', $movie->id))->with('success', 'Movie updated');
     }
 
